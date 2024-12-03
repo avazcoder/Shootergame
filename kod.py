@@ -21,6 +21,11 @@ for i in range(1, len(odd_number)):
 
 def main():
     print('Hello world')
+
+
+def test():
+    print("this is test")
+
     
         
 
