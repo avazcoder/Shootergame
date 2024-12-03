@@ -23,8 +23,6 @@ def main():
     print('Hello world')
 
 
-def test():
-    print("this is test")
 
     
         
