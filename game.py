@@ -22,3 +22,20 @@ class Soldier(pygame.sprite.Sprite):
   
 player = Soldier(200, 200, 3)
 player2 = Soldier(400, 200, 3)
+
+run = True
+while run:
+
+	
+	player.draw()
+	player2.draw()
+
+	for event in pygame.event.get():
+		#quit game
+		if event.type == pygame.QUIT:
+			run = False
+
+
+	pygame.display.update()
+
+pygame.quit()
