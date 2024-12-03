@@ -8,3 +8,7 @@ SCREEN_HEIGHT = int(SCREEN_WIDTH * 0.8)
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption('Shooter')
+
+class Soldier(pygame.sprite.Sprite):
+    def __init__(self, x, y, scale):
+        
