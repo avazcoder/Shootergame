@@ -267,12 +267,19 @@ class Explosion(pygame.sprite.Sprite):
 
 
 #create sprite groups
+enemy_group = pygame.sprite.Group()
 bullet_group = pygame.sprite.Group()
 grenade_group = pygame.sprite.Group()
+explosion_group = pygame.sprite.Group()
+
 
 
 player = Soldier('player',200, 200, 3, 5, 20, 5)
 enemy = Soldier('enemy',400, 200, 3, 5, 20, 0)
+enemy2 = Soldier('enemy', 300, 300, 3, 5, 20, 0)
+enemy_group.add(enemy)
+enemy_group.add(enemy2)
+
 
 run = True
 while run:	
@@ -284,14 +291,17 @@ while run:
 	player.update()
 	player.draw()
 
-	enemy.update()
-	enemy.draw()
+	for enemy in enemy_group:
+		enemy.update()
+		enemy.draw()
 
 	#update and draw groups
 	bullet_group.update()
 	grenade_group.update()
+	explosion_group.update()
 	bullet_group.draw(screen)
 	grenade_group.draw(screen)
+	explosion_group.draw(screen)
 
 
 
