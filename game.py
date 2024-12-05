@@ -16,6 +16,25 @@ class Soldier(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(img, (int(img.get_width() * scale), int(img.get_height() * scale)))
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
+    def move(self, moving_left, moving_right):
+		#reset movement variables
+        dx = 0
+        dy = 0
+
+		#assign movement variables if moving left or right
+        if moving_left:
+            dx = -self.speed
+            self.flip = True
+            self.direction = -1
+        if moving_right:
+            dx = self.speed
+            self.flip = False
+            self.direction = 1
+
+
+		#update rectangle position
+        self.rect.x += dx
+        self.rect.y += dy
 
     def draw(self):
         screen.blit(self.image, self.rect)
