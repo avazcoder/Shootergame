@@ -27,11 +27,26 @@ grenade_thrown = False
 bullet_img = pygame.image.load('img/icons/bullet.png').convert_alpha()
 #grenade
 grenade_img = pygame.image.load('img/icons/grenade.png').convert_alpha()
+#pick up boxes
+health_box_img = pygame.image.load('img/icons/health_box.png').convert_alpha()
+ammo_box_img = pygame.image.load('img/icons/ammo_box.png').convert_alpha()
+grenade_box_img = pygame.image.load('img/icons/grenade_box.png').convert_alpha()
+item_boxes = {
+	'Health'	: health_box_img,
+	'Ammo'		: ammo_box_img,
+	'Grenade'	: grenade_box_img
+}
 
 
 #define colours
 BG = (144, 201, 120)
 RED = (255, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+BLACK = (0, 0, 0)
+
+#define font
+font = pygame.font.SysFont('Futura', 30)
 
 def draw_bg():
 	screen.fill(BG)
