@@ -224,8 +224,8 @@ bullet_group = pygame.sprite.Group()
 grenade_group = pygame.sprite.Group()
 
 
-player = Soldier('player',200, 200, 3, 5, 20)
-enemy = Soldier('enemy',400, 200, 3, 5, 20)
+player = Soldier('player',200, 200, 3, 5, 20, 5)
+enemy = Soldier('enemy',400, 200, 3, 5, 20, 0)
 
 run = True
 while run:	
@@ -282,6 +282,8 @@ while run:
 				moving_right = True
 			if event.key == pygame.K_SPACE:
 				shoot = True
+			if event.key == pygame.K_q:
+				grenade = True
 			if event.key == pygame.K_w and player.alive:
 				player.jump = True
 			if event.key == pygame.K_ESCAPE:
@@ -296,6 +298,9 @@ while run:
 				moving_right = False
 			if event.key == pygame.K_SPACE:
 				shoot = False
+			if event.key == pygame.K_q:
+				grenade = False
+				grenade_thrown = False
 
 
 
