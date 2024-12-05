@@ -182,51 +182,75 @@ class Bullet(pygame.sprite.Sprite):
 			if enemy.alive:
 				enemy.health -= 25
 				self.kill()
+
+#create sprite groups
+bullet_group = pygame.sprite.Group()
+
 player = Soldier('player',200, 200, 3, 5)
 enemy = Soldier('enemy',400, 200, 3, 5)
 
 run = True
-while run:
-    clock.tick(FPS)
+while run:	
 
-    draw_bg()
-	
-    player.update_animation()
-    player.draw()
-    enemy.draw()
+	clock.tick(FPS)
+
+	draw_bg()
+
+	player.update()
+	player.draw()
+
+	enemy.update()
+	enemy.draw()
+
+	#update and draw groups
+	bullet_group.update()
+	bullet_group.draw(screen)
 
 
 	#update player actions
-    if player.alive:
-        if player.in_air:
-            player.update_action(2)#2: jump
-        elif moving_left or moving_right:
-            player.update_action(1)#1: run
-        else:
-            player.update_action(0)#0: idle
-        player.move(moving_left, moving_right)
+	if player.alive:
+		#shoot bullets
+		if shoot:
+			player.shoot()
+		if player.in_air:
+			player.update_action(2)#2: jump
+		elif moving_left or moving_right:
+			player.update_action(1)#1: run
+		else:
+			player.update_action(0)#0: idle
+		player.move(moving_left, moving_right)
 
-    for event in pygame.event.get():
-    #quit game
-        if event.type == pygame.QUIT:
-            run = False
-        #Keyboard presses
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_a:
-                moving_left = True
-            if event.key == pygame.K_d:
-                moving_right = True
-            if event.key == pygame.K_w and player.alive:
-                player.jump = True
-            if event.key == pygame.K_ESCAPE:
-                run = False
-        #keyboard button released
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_a:
-                moving_left = False
-            if event.key == pygame.K_d:
-                moving_right = False        
 
-    pygame.display.update()
+	for event in pygame.event.get():
+		#quit game
+		if event.type == pygame.QUIT:
+			run = False
+		#keyboard presses
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_a:
+				moving_left = True
+			if event.key == pygame.K_d:
+				moving_right = True
+			if event.key == pygame.K_SPACE:
+				shoot = True
+			if event.key == pygame.K_w and player.alive:
+				player.jump = True
+			if event.key == pygame.K_ESCAPE:
+				run = False
+
+
+		#keyboard button released
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_a:
+				moving_left = False
+			if event.key == pygame.K_d:
+				moving_right = False
+			if event.key == pygame.K_SPACE:
+				shoot = False
+
+
+
+
+	pygame.display.update()
 
 pygame.quit()
