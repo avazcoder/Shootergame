@@ -128,7 +128,7 @@ class Soldier(pygame.sprite.Sprite):
 		screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
   
 player = Soldier('player',200, 200, 3, 5)
-player2 = Soldier('enemy',400, 200, 3, 5)
+enemy = Soldier('Enemy',400, 200, 3, 5)
 
 run = True
 while run:
