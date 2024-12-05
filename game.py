@@ -13,6 +13,7 @@ FPS = 60
 
 #define game variables
 GRAVITY = 0.75
+TILE_SIZE = 40
 
 #define player action variables
 moving_left = False
@@ -217,6 +218,22 @@ class Grenade(pygame.sprite.Sprite):
 		#update grenade position
 		self.rect.x += dx
 		self.rect.y += dy
+
+
+		#countdown timer
+		self.timer -= 1
+		if self.timer <= 0:
+			self.kill()
+			explosion = Explosion(self.rect.x, self.rect.y, 0.5)
+			explosion_group.add(explosion)
+			#do damage to anyone that is nearby
+			if abs(self.rect.centerx - player.rect.centerx) < TILE_SIZE * 2 and \
+				abs(self.rect.centery - player.rect.centery) < TILE_SIZE * 2:
+				player.health -= 50
+			for enemy in enemy_group:
+				if abs(self.rect.centerx - enemy.rect.centerx) < TILE_SIZE * 2 and \
+					abs(self.rect.centery - enemy.rect.centery) < TILE_SIZE * 2:
+					enemy.health -= 50
 
 
 #create sprite groups
